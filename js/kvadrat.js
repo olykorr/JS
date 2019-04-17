@@ -15,7 +15,7 @@ var keyState = {
     up: false,
     down: false,
     left: false,
-    right: false
+    right: falsefsfsaf
 };
 
 var position = {
@@ -76,5 +76,6 @@ var drawInterval = setInterval(function() {
 }, (1000/30));   
 }
 
-makeKvadrat(player_el1,'kW','kS','kA','kD','red','100px','100px');
-makeKvadrat(player_el1,'ArrowDown','ArrowUp','ArrowLeft','ArrowRight','green','50px','50px');
+makeKvadrat('player_el1','kW','kS','kA','kD','red','100px','100px');
+
+makeKvadrat('player_el2','ArrowDown','ArrowUp','ArrowLeft','ArrowRight','green','50px','50px');

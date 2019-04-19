@@ -1,0 +1,93 @@
+<!--https://codepen.io/beeeees/pen/tsBwe-->
+<!--https://www.jqueryscript.net/other/Minimal-To-do-List-Task-Manager-App-Using-jQuery-Local-Storage.html-->
+<!--https://codepen.io/enriquegonzalez/pen/cAimw-->
+<!--https://codepen.io/beeeees/pen/tsBwe-->
+<!--http://todomvc.com/examples/jquery/#/all-->
+
+<h1>To-Do List</h1>
+  <form id="form-add-todo" class="form-add-todo">
+    <label for="todo">To do:</label>
+    <input type="text" id="new-todo-item" class="new-todo-item" name="todo" />
+    <input type="submit" id="add-todo-item" class="add-todo-item" value="add the todo" />
+  </form>
+  
+  <form id="form-todo-list">
+    <ul id="todo-list" class="todo-list">
+    </ul>
+  </form>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+   
+ <script>
+ 
+
+ 
+function addTodoItem() {
+  var todoItem = $("#new-todo-item").val();//ищит елемент и берет из него значение
+  makeLi(todoItem );
+  
+  
+ $("#new-todo-item").val("");
+}
+
+function deleteTodoItem(e, item) {
+  e.preventDefault();
+  $(item).parent().fadeOut('slow', function() { //.parent() доступ к родительскому елементу (к <li>), запускает анимацию медленного исчезновения, и принимает колбек функцию которую віполняет по окончанию анимации.
+    $(item).parent().remove();
+  });
+}
+
+function makeLi(text){
+	$("#todo-list").append("<li><input type='checkbox'" + 
+                         " name='todo-item-done'" + 
+                         " class='todo-item-done'"+ 
+                         " value='" + text + "' /> " + 
+                         text +
+                         " <button class='todo-item-delete'>"+
+                         "Delete</button></li>");
+}
+
+                           
+function completeTodoItem() {  
+  $(this).parent().toggleClass("strike");
+}
+
+
+$(function() { //ожидает загрузки всего html документа
+ var todoItemsArray= JSON.parse(localStorage.getItem('todo') || '[]');//достаем из глобального масива localStorage елементі по ключу 'todo'
+ 
+function save() 
+{
+   localStorage.setItem('todo', JSON.stringify(todoItemsArray))//'todo'-key, JSON.stringify(list_arr)-value( превращаем масив в json)
+}
+ 
+ 
+ 
+ 
+ todoItemsArray.forEach(function(val){
+	makeLi(val);
+ })
+ 
+ 
+ 
+   $("#add-todo-item").on('click', function(e){ //
+     e.preventDefault();// отменяет стандартное поведение кнопки или в конце віполнения функциии return false отмена віполнения стандартного поведения кнопки
+     var todoItem = $("#new-todo-item").val();
+	 todoItemsArray.push(todoItem);
+	 save();
+	 addTodoItem();
+	 
+   });
+  
+//EVENT DELEGATION
+//#todo-list is the event handler because .todo-item-delete doesn't exist when the document loads, it is generated later by a todo entry
+//https://learn.jquery.com/events/event-delegation/
+  $("#todo-list").on('click', '.todo-item-delete', function(e){
+    var item = this; 
+    deleteTodoItem(e, item)
+  })
+  
+  $(document).on('click', ".todo-item-done", completeTodoItem)
+
+});
+ </script>

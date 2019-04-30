@@ -1,0 +1,68 @@
+1 „то такое Date
+
+
+https://plnkr.co/edit/rE7ujjEo00sQoTTkyl0s?p=preview
+
+
+Data = new Date(); //дл€ всех
+2 ”знать текущий день мес€ца
+Day = Data.getDate();
+
+3 ”знать текущий номер мес€ца
+Month = Data.getMonth();
+
+4 ”знать текущий год
+Year = Data.getFullYear();
+
+5 ”знать количество дней в текущем мес€це, 8 ”знать количество дней в след. мес€це,9 ”знать кол. дней в пред. мес€це
+function daysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
+}
+console.log(daysInMonth(2, 1999)); // February in a non-leap year
+console.log(daysInMonth(2, 2000)); // February in a leap year
+
+5 ”знать количество дней в текущем мес€це,
+function daysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
+}
+col1=daysInMonth(Data.getMonth(), Data.getFullYear());
+
+6 ”знать день недели
+Day=Data.getDay()
+
+7 ”становить новую дату
+var d = new Date();
+d.setFullYear(2019);
+d.setMonth(0);
+d.setDate(25);
+document.getElementById("demo").innerHTML = d;
+
+8 ”знать количество дней в след. мес€це
+function daysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
+}
+col1=daysInMonth(Data.getMonth()+1, Data.getFullYear());
+
+9 ”знать кол. дней в пред. мес€це
+function daysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
+}
+col1=daysInMonth(Data.getMonth()-1, Data.getFullYear());
+
+10 ¬ывести Ќазвание мес€ца https://daruse.ru/current-data-time
+Data = new Date();
+Year = Data.getFullYear();
+Month = Data.getMonth();
+Day = Data.getDate();
+
+var monthNames =new Array("€нвар€", "феврал€", "марта", "апрел€", "ма€", "июн€", "июл€", "августа", "сент€бр€", "окт€бр€", "но€бр€", "декабр€");
+var month = monthNames[Data.getMonth())]; //им€ котором≥ присвоен нов≥й обьект . им€ свойтва
+ 
+11 ¬ывести Ќазвание дн€ недели
+//определ€ем день недели http://blogprogram.ru/vyvesti-den-mesyaca-nazvanie-mesyaca-i-den-nedeli-cherez-javascript/
+var now = new Date();
+var dayNames = new Array("¬оскресенье","ѕонедельник","¬торник","—реда","„етверг","ѕ€тница","—уббота");
+var day = dayNames[now.getDay()];
+
+
+https://webgyry.info/first-last-day-current-year
